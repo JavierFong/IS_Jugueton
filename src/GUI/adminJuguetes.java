@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Work
+ * @author Diego Jacobs 13160
  */
 public class adminJuguetes extends javax.swing.JFrame {
     private AdministradorJuguetes admin = new AdministradorJuguetes();
@@ -164,7 +164,7 @@ public class adminJuguetes extends javax.swing.JFrame {
             showJuguetes(); 
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    //ingresar juguetes
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow(); 
