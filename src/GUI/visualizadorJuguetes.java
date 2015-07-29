@@ -6,6 +6,7 @@
 package GUI;
 
 import backEnd.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -93,7 +94,7 @@ public class visualizadorJuguetes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -110,6 +111,17 @@ public class visualizadorJuguetes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int row = jTable1.getSelectedRow(); 
+        if (row > -1){
+            Juguete temp = retrieve(row); 
+            int cant = menosJuguetes(temp.getCodigo(),temp.getCantidad());
+            temp.setCantidad(temp.getCantidad()-cant);
+            int opc = JOptionPane.showConfirmDialog(this, "Seguro que desea vender "+cant+" juguetes a "+temp.getCodigo()+"?"); 
+            if (opc == 0) {
+                admin.modificar(temp);
+                showJuguetes();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -174,6 +186,43 @@ public class visualizadorJuguetes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+    }
+    private int menosJuguetes(int cod, int ex){
+        int c = 0; 
+        boolean flag = false; 
+        while (!(flag)) {
+            try {
+                c = Integer.parseInt(JOptionPane.showInputDialog(this,"Cuantos Juguetes de ("+cod+") desea vender?:"));
+                if (c<ex){
+                    flag = true;
+                } else {
+                    JOptionPane.showMessageDialog(this,"No existe esa cantidad de Juguetes en el inventario");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,"Cantidad invalida.");
+            }    
+        }
+        return c; 
+    }
+    private Juguete retrieve(int row) {
+        String cJ = String.valueOf(jTable1.getValueAt(row, 0));
+        int codigoJ = Integer.parseInt(cJ); 
+        String cP = String.valueOf(jTable1.getValueAt(row, 1));
+        int codigoP = Integer.parseInt(cP);
+        String marca = (String) jTable1.getValueAt(row, 2);
+        String age = String.valueOf(jTable1.getValueAt(row, 3));
+        int edad = Integer.parseInt(age);
+        String tipo = (String) jTable1.getValueAt(row, 4); 
+        String comp = String.valueOf(jTable1.getValueAt(row, 5));
+        int complejidad = Integer.parseInt(comp); 
+        String vU = String.valueOf(jTable1.getValueAt(row, 6));
+        float valU = Float.parseFloat(vU);
+        String vA = String.valueOf(jTable1.getValueAt(row, 7));
+        float valA = Float.parseFloat(vA); 
+        String qant = String.valueOf(jTable1.getValueAt(row, 9));
+        int cant = Integer.parseInt(qant);
+        Juguete temp = new Juguete(codigoJ,codigoP,marca,edad,tipo,complejidad,valU,valA,cant);
+        return temp; 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
