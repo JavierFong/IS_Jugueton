@@ -9,11 +9,11 @@ import GUI.logInGUI;
 
 /**
  *
- * @author Javier Fong
- * Daniel Orozco
- * Diego Jacobs
- * William Fuentes
- * Roberto Chiroy
+ * Diego Jacobs 13160
+*Daniel Orozco 13312
+*Roberto Chiroy 13027
+*William Fuentes 13324
+*Javier Fong 13118
  */
 public class main {
 
