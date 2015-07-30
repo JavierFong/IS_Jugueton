@@ -12,6 +12,11 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Work
+ * Javier Fong
+ * Daniel Orozco
+ * Diego Jacobs
+ * William Fuentes
+ * Roberto Chiroy
  */
 public class logInGUI extends javax.swing.JFrame {
     AdministradorUsuarios admin = new AdministradorUsuarios();
