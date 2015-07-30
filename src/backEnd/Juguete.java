@@ -37,14 +37,6 @@ public class Juguete {
         this.Cantidad = cantidad; 
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public int getCodProveedor() {
         return codProveedor;
     }
@@ -53,6 +45,18 @@ public class Juguete {
         this.codProveedor = codProveedor;
     }
 
+    
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+   
+    public int getCodigo() {
+        return codigo;
+    }
+
+ 
+
+    
     public String getMarca() {
         return marca;
     }
