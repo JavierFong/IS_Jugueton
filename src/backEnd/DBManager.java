@@ -5,10 +5,13 @@
  */
 package backEnd;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Properties;
 
 /**
  *
@@ -39,8 +42,25 @@ public class DBManager {
     
     public void conectar() {
         try {
+            /*Properties prop = new Properties();
+            String propFileName = "connection.properties";
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+            InputStream stream = loader.getResourceAsStream("connection.properties");
+
+            if (stream != null) {
+		prop.load(stream);
+            } else {
+		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            // get the property value and print it out
+            String ip = prop.getProperty("ip");
+            String db = prop.getProperty("database");
+            String user = prop.getProperty("user");
+            String pw = prop.getProperty("password"); */
+            
             Class.forName("com.mysql.jdbc.Driver");
             String conexion = "jdbc:mysql://localhost/Jugueton?user=JJosueFong&password=Submarino1994"; 
+            //String conexion = "jdbc:mysql://"+ip+"/"+db+"?user="+user+"&password="+pw;
             con = DriverManager.getConnection(conexion); 
             stm = con.createStatement(); 
             System.out.println("Conexion exitosa");

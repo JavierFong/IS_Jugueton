@@ -53,8 +53,6 @@ public class adminJuguetes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -83,7 +81,7 @@ public class adminJuguetes extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Modificar Precio");
+        jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -94,20 +92,6 @@ public class adminJuguetes extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Vender Juguete");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Ingresar juguete existente");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
             }
         });
 
@@ -122,13 +106,10 @@ public class adminJuguetes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -138,9 +119,7 @@ public class adminJuguetes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                 .addContainerGap())
@@ -207,69 +186,7 @@ public class adminJuguetes extends javax.swing.JFrame {
         menuInicio mi = new menuInicio(this.getActual()); 
         mi.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        int row = jTable1.getSelectedRow(); 
-        if (row > -1){
-            Juguete temp = retrieve(row); 
-            int cant = menosJuguetes(temp.getCodigo(),temp.getCantidad());
-            temp.setCantidad(temp.getCantidad()-cant);
-            int opc = JOptionPane.showConfirmDialog(this, "Seguro que desea vender "+cant+" juguetes a "+temp.getCodigo()+"?"); 
-            if (opc == 0) {
-                admin.modificar(temp);
-                showJuguetes();
-            }
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        int row = jTable1.getSelectedRow(); 
-        if (row > -1){
-            Juguete temp = retrieve(row); 
-            int cant = masJuguetes(temp.getCodigo());
-            temp.setCantidad(cant+temp.getCantidad());
-            int opc = JOptionPane.showConfirmDialog(this, "Seguro que desea agregar "+cant+" juguetes a "+temp.getCodigo()+"?"); 
-            if (opc == 0) {
-                admin.modificar(temp);
-                showJuguetes();
-            }
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
     
-    public int masJuguetes(int cod){
-        int c = 0; 
-        boolean flag = false; 
-        while (!(flag)) {
-            try {
-                String in = JOptionPane.showInputDialog(this,"Cuantos Juguetes de ("+cod+") desea agregar?:");
-                if (in.equals("")) {c = Integer.parseInt(in);}
-                else { c = 0;}
-                flag = true; 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,"Cantidad invalida.");
-            }    
-        }
-        return c; 
-    }
-    private int menosJuguetes(int cod, int ex){
-        int c = 0; 
-        boolean flag = false; 
-        while (!(flag)) {
-            try {
-                c = Integer.parseInt(JOptionPane.showInputDialog(this,"Cuantos Juguetes de ("+cod+") desea vender?:"));
-                if (c<ex){
-                    flag = true;
-                } else {
-                    JOptionPane.showMessageDialog(this,"No existe esa cantidad de Juguetes en el inventario");
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,"Cantidad invalida.");
-            }    
-        }
-        return c; 
-    }
     private Juguete retrieve(int row) {
         String cJ = String.valueOf(jTable1.getValueAt(row, 0));
         int codigoJ = Integer.parseInt(cJ); 
@@ -428,8 +345,6 @@ public class adminJuguetes extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

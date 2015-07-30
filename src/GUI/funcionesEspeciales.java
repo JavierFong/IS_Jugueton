@@ -312,7 +312,7 @@ public class funcionesEspeciales extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         String[] tipos = new String[] {"Mecanico","Electronico"};
         String type; 
@@ -326,7 +326,39 @@ public class funcionesEspeciales extends javax.swing.JFrame {
             listado = jAdmin.juguetesElectronicos();
             listado = jAdmin.sort(listado);
         }
-    }//GEN-LAST:event_jMenuItem7ActionPerformed    
+        Juguete[] prov = new Juguete[listado.length]; 
+        for(int i=0; i< listado.length; i++) {
+        }
+        int lim = listado.length; 
+        Object[][] data = new Object[lim][10];
+        for (int i = 0; i<lim; i++) {
+            data[i][0] = listado[i].getCodigo();
+            data[i][1] = listado[i].getCodProveedor(); 
+            data[i][2] = listado[i].getMarca();
+            data[i][3] = listado[i].getEdad(); 
+            data[i][4] = listado[i].getTipo();
+            data[i][5] = listado[i].getComplejidad(); 
+            data[i][6] = listado[i].getValorUnitario(); 
+            data[i][7] = listado[i].getValorAdicional(); 
+            data[i][8] = listado[i].getValorReal(); 
+            data[i][9] = listado[i].getCantidad(); 
+            
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            data,
+            new String [] {
+                "Codigo", "Proovedor", "Marca", "Edad", "Tipo", "Complejidad", "Valor Uni.", "Valor Ad.","Valor real", "Cantidad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false,false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }                                              
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
