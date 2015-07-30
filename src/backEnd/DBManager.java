@@ -5,6 +5,8 @@
  */
 package backEnd;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -57,10 +59,20 @@ public class DBManager {
             String db = prop.getProperty("database");
             String user = prop.getProperty("user");
             String pw = prop.getProperty("password"); */
+            File file = new File("resources/connection.properties");
+            FileInputStream fileInput = new FileInputStream(file);
+            Properties properties = new Properties();
+            properties.load(fileInput);
+            fileInput.close();
+
+            String ip = properties.getProperty("ip");
+            String db = properties.getProperty("database");
+            String user = properties.getProperty("user");
+            String pw = properties.getProperty("password");
             
             Class.forName("com.mysql.jdbc.Driver");
-            String conexion = "jdbc:mysql://localhost/Jugueton?user=JJosueFong&password=Submarino1994"; 
-            //String conexion = "jdbc:mysql://"+ip+"/"+db+"?user="+user+"&password="+pw;
+            //String conexion = "jdbc:mysql://localhost/Jugueton?user=JJosueFong&password=Submarino1994"; 
+            String conexion = "jdbc:mysql://"+ip+"/"+db+"?user="+user+"&password="+pw;
             con = DriverManager.getConnection(conexion); 
             stm = con.createStatement(); 
             System.out.println("Conexion exitosa");
