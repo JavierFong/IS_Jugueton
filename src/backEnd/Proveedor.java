@@ -23,27 +23,28 @@ public class Proveedor {
     public Proveedor() {
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
-
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
-    public String getNombre() {
-        return nombre;
+    
+    public int getCodigo() {
+        return codigo;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public int getCant_juguetes() {
-        return cant_juguetes;
+    
+    public String getNombre() {
+        return nombre;
     }
 
     public void setCant_juguetes(int cant_juguetes) {
         this.cant_juguetes = cant_juguetes;
     }
+    
+    public int getCant_juguetes() {
+        return cant_juguetes;
+    }
+    
 }
